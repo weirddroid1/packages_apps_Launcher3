@@ -92,6 +92,7 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.AnimatedVectorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -728,7 +729,7 @@ public abstract class RecentsView<
 
     // Variables for empty state
     @Nullable private ViewGroup mEmptyRecentsMessageView;
-    private Drawable mEmptyIcon;
+    private AnimatedVectorDrawable mEmptyIcon;
     private CharSequence mEmptyMessage;
     private TextPaint mEmptyMessagePaint;
     private Point mLastMeasureSize = new Point();
@@ -1057,7 +1058,7 @@ public abstract class RecentsView<
         if (mEmptyRecentsMessageView != null) {
             updateEmptyMessageConfiguration();
         } else {
-            mEmptyIcon = mContext.getDrawable(R.drawable.ic_view_carousel);
+            mEmptyIcon = (AnimatedVectorDrawable) context.getDrawable(R.drawable.ic_empty_recents);
             mEmptyIcon.setCallback(this);
             mEmptyMessage = mContext.getText(R.string.recents_empty_message);
             mEmptyMessagePaint = new TextPaint();
@@ -4616,6 +4617,9 @@ public abstract class RecentsView<
             int left = (mLastMeasureSize.x - mEmptyIcon.getIntrinsicWidth()) / 2;
             mEmptyIcon.setBounds(left, top, left + mEmptyIcon.getIntrinsicWidth(),
                     top + mEmptyIcon.getIntrinsicHeight());
+            if (mEmptyIcon instanceof AnimatedVectorDrawable) {
+                ((AnimatedVectorDrawable) mEmptyIcon).start();
+            }
         }
     }
 
