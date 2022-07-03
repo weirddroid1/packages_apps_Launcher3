@@ -234,6 +234,7 @@ public class BaseDepthControllerImpl<
 
         if (windowToken != null) {
             mWallpaperManager.setWallpaperZoomOut(windowToken, wallpaperZoom);
+                    LauncherPrefs.ALLOW_WALLPAPER_ZOOMING.get(mLauncher) ? depth : 1);
         }
 
         if (!BlurUtils.supportsBlursOnWindows()) {
