@@ -211,7 +211,7 @@ public class SettingsActivity extends FragmentActivity
      * This fragment shows the launcher preferences.
      */
     public static class LauncherSettingsFragment extends SettingsBasePreferenceFragment implements
-            SettingsCache.OnChangeListener, androidx.preference.Preference.OnPreferenceChangeListener {
+                                        androidx.preference.Preference.OnPreferenceChangeListener {
 
         private @Nullable SafeCloseable mSettingCacheSafeCloseable;
 
